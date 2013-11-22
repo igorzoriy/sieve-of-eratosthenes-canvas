@@ -50,7 +50,7 @@ function SoE(canvasId, sellSize, sellCount) {
     this.canvas.width = sellSize * this.columnCount;
     this.canvas.height = sellSize * this.rowCount;
 
-    this.context = canvas.getContext('2d');
+    this.context = this.canvas.getContext('2d');
     this.context.font = Math.round(sellSize / 2) + 'px sans-serif';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'middle';
@@ -92,7 +92,7 @@ SoE.prototype.drawSieve = function () {
         this.drawLine(new Point(0, i * this.sellSize - 1), new Point(this.canvas.width - 2, i * this.sellSize - 1));
     }
     for (i = 0; i < this.columnCount; i++) {
-        this.drawLine(new Point(i * this.sellSize - 1, 0), new Point(i * this.sellSize - 1, canvas.height - 2));
+        this.drawLine(new Point(i * this.sellSize - 1, 0), new Point(i * this.sellSize - 1, this.canvas.height - 2));
     }
 };
 
@@ -130,5 +130,4 @@ SoE.prototype.render = function () {
     this.drawNumbers();
 };
 
-var sieve = new SoE('canvas', 30, 100);
-sieve.render();
+(new SoE('canvas', 30, 100)).render();
